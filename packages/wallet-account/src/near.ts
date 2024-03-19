@@ -68,11 +68,6 @@ export interface NearConfig {
     walletUrl?: string;
 
     /**
-     * JVSM account ID for NEAR JS SDK
-     */
-    jsvmAccountId?: string;
-
-    /**
      * Backward-compatibility for older versions
      */
     deps?: { keyStore: KeyStore };
@@ -100,7 +95,6 @@ export class Near {
             networkId: config.networkId,
             provider: { type: 'JsonRpcProvider', args: { url: config.nodeUrl, headers: config.headers } },
             signer: config.signer || { type: 'InMemorySigner', keyStore: config.keyStore || config.deps?.keyStore },
-            jsvmAccountId: config.jsvmAccountId || `jsvm.${config.networkId}`
         });
         
         if (config.masterAccount) {

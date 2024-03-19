@@ -414,7 +414,7 @@ export class Account {
         }
 
         return this.signAndSendTransaction({
-            receiverId: jsContract ? this.connection.jsvmAccountId : contractId,
+            receiverId: contractId,
             // eslint-disable-next-line prefer-spread
             actions: [functionCall.apply(void 0, functionCallArgs)],
             walletMeta,
@@ -566,7 +566,7 @@ export class Account {
         const result = await this.connection.provider.query<CodeResult>({
             request_type: 'call_function',
             ...blockQuery,
-            account_id: jsContract ? this.connection.jsvmAccountId : contractId,
+            account_id: contractId,
             method_name: jsContract ? 'view_js_contract' : methodName,
             args_base64: encodedArgs.toString('base64')
         });
